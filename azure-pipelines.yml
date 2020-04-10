@@ -20,7 +20,8 @@ steps:
     publishJUnitResults: true
     testResultsFiles: '**/surefire-reports/TEST-*.xml'
     goals: 'package'
-- task: PublishSymbols@2
+- task: PublishPipelineArtifact@1
   inputs:
-    SearchPattern: '**/bin/**/*.pdb'
-    SymbolServerType: 'TeamServices'
+    targetPath: '$(Pipeline.Workspace)'
+    artifact: 'testdrop'
+    publishLocation: 'pipeline'
